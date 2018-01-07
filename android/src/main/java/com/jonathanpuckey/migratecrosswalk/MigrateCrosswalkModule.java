@@ -47,18 +47,21 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
   private File webviewRoot;
 
   public MigrateCrosswalkModule(ReactApplicationContext reactContext) {
-		super(reactContext);
+    super(reactContext);
+  }
+
+  @ReactMethod
+  public Boolean migrate() {
     Log.d(TAG, "running Crosswalk migration shim");
 
     boolean found = lookForXwalk(reactContext.getFilesDir());
-    if (!found){
-        lookForXwalk(reactContext.getExternalFilesDir(null));
-    }
 
-    if(found){
-        migrateData(reactContext);
+    if (found) {
+      return migrateData(reactContext);
+    } else {
+      return false;
     }
-	}
+  }
 
   @Override
   public String getName() {
@@ -104,7 +107,9 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
 
       if(hasMigratedData){
         deleteRecursive(XWalkRoot);
+        return true;
       }
+      return false;
   }
 
   private void moveDirFromXWalkToWebView(String dirName){
