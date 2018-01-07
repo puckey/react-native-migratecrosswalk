@@ -6,6 +6,6 @@
 
 import { NativeModules} from 'react-native';
 
-const { RNMigrateCrosswalk } = NativeModules;
+const { MigrateCrosswalk } = NativeModules;
 
-export default RNMigrateCrosswalk;
+export default MigrateCrosswalk;
