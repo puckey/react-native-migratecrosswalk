@@ -1,0 +1,19 @@
+{
+  "name": "react-native-migrate-crosswalk",
+  "version": "1.0.0",
+  "description": "Migrate Crosswalk's webview data to system webview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/puckey/react-native-migratecrosswalk.git"
+  },
+  "author": "Puckey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puckey/react-native-migratecrosswalk/issues"
+  },
+  "homepage": "https://github.com/puckey/react-native-migratecrosswalk#readme"
+}
