@@ -40,8 +40,6 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
           "IndexedDB",
           "databases"
   };
-  private Activity activity;
-  private Context context;
 
   private boolean isModernAndroid;
   private File appRoot;
@@ -80,8 +78,6 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
   }
 
   private void migrateData(ReactApplicationContext reactContext){
-    activity = getCurrentActivity();
-    context = activity.getApplicationContext();
     isModernAndroid = Build.VERSION.SDK_INT >= 19;
     XWalkRoot = constructFilePaths(appRoot, XwalkPath);
 
@@ -107,8 +103,7 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
       }
 
       if(hasMigratedData){
-          deleteRecursive(XWalkRoot);
-          activity.recreate();
+        deleteRecursive(XWalkRoot);
       }
   }
 
