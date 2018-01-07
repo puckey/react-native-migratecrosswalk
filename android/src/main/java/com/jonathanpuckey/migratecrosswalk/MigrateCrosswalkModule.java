@@ -52,9 +52,9 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
 		super(reactContext);
     Log.d(TAG, "running Crosswalk migration shim");
 
-    boolean found = lookForXwalk(context.getFilesDir());
+    boolean found = lookForXwalk(reactContext.getFilesDir());
     if (!found){
-        lookForXwalk(context.getExternalFilesDir(null));
+        lookForXwalk(reactContext.getExternalFilesDir(null));
     }
 
     if(found){
