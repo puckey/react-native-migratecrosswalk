@@ -45,19 +45,21 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
   private File appRoot;
   private File XWalkRoot;
   private File webviewRoot;
+  private ReactApplicationContext context;
 
   public MigrateCrosswalkModule(ReactApplicationContext reactContext) {
     super(reactContext);
+    context = reactContext;
   }
 
   @ReactMethod
   public Boolean migrate() {
     Log.d(TAG, "running Crosswalk migration shim");
 
-    boolean found = lookForXwalk(reactContext.getFilesDir());
+    boolean found = lookForXwalk(context.getFilesDir());
 
     if (found) {
-      return migrateData(reactContext);
+      return migrateData();
     } else {
       return false;
     }
@@ -80,7 +82,7 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
     return found;
   }
 
-  private void migrateData(ReactApplicationContext reactContext){
+  private Boolean migrateData(){
     isModernAndroid = Build.VERSION.SDK_INT >= 19;
     XWalkRoot = constructFilePaths(appRoot, XwalkPath);
 
@@ -107,9 +109,8 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
 
       if(hasMigratedData){
         deleteRecursive(XWalkRoot);
-        return true;
       }
-      return false;
+      return hasMigratedData;
   }
 
   private void moveDirFromXWalkToWebView(String dirName){
