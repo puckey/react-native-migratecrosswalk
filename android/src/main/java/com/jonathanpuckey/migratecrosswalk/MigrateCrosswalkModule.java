@@ -62,6 +62,11 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
     }
 	}
 
+  @Override
+  public String getName() {
+    return "MigrateCrosswalk";
+  }
+
   private boolean lookForXwalk(File filesPath){
     File root = getStorageRootFromFiles(filesPath);
     boolean found = testFileExists(root, XwalkPath);
