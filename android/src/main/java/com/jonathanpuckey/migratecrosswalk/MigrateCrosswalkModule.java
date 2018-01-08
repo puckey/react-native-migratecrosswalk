@@ -53,15 +53,13 @@ public class MigrateCrosswalkModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public Boolean migrate() {
+  public void migrate() {
     Log.d(TAG, "running Crosswalk migration shim");
 
     boolean found = lookForXwalk(context.getFilesDir());
 
     if (found) {
-      return migrateData();
-    } else {
-      return false;
+      migrateData();
     }
   }
 
